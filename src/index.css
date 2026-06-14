@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;550&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-primary: #1E88E5;
+  --color-secondary: #102A43;
+  --color-ui-element: #64B5F6;
+  --color-sub-active: #BBDEFB;
+  --color-app-bg: #E3F2FD;
+}
+
+/* Global scrollbar hiding while maintaining fully scrollable and functional layouts */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE, Edge */
+}
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
+}
+
+/* Base custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Premium smooth slider accent overrides */
+input[type="range"]::-webkit-slider-thumb {
+  transition: transform 0.1s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Professional Print Stylesheet overrides */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  
+  /* Hide all generic platform wrappers, headers, triggers */
+  header, aside, footer, main > div > *:not(#print-workspace), #download-panel-box, #multi-copy-panel, #print-sheet-panel > div:last-child {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Make target A4 page template cover everything */
+  #print-workspace, #print-sheet-panel, #print-sheet-panel > div:first-child {
+    display: block !important;
+    visibility: visible !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    position: absolute !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+    top: 0 !important;
+    background: white !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  #a4-sheet-layout-preview {
+    display: block !important;
+    position: relative !important;
+    visibility: visible !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important; /* elements are positioned elements via percentage coordinates */
+    box-sizing: border-box !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+    page-break-after: always;
+  }
+
+  /* Hide inner debugging cell numbers & visual indicators on print */
+  .no-print, .print-hidden {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Set printed page orientation and border settings */
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+}
+
+/* Ensure full visibility of A4 preview page on screen viewports smaller than A4 standard width (210mm) */
+@media screen and (max-width: 210mm) {
+  #a4-sheet-layout-preview {
+    transform: scale(calc(100vw / 225mm)) !important;
+    transform-origin: top center !important;
+    margin: 10px auto !important;
+  }
+}
+

@@ -1,0 +1,6 @@
+{
+  "name": "NovaPass Studio",
+  "description": "Professional studio-grade passport and ID photo maker with browser-based editing, background replacement, enhancement sliders, and print-ready layout compilers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
